@@ -20,8 +20,7 @@ def main():
     cbo_hierarquia = build_hierarchy(cbo_raw)
     correspondencia = build_correspondence_table(cbo_hierarquia)
 
-    print("
-Exportando arquivos...")
+    print("\\nExportando arquivos...")
     export_to_csv(cbo_hierarquia, csv_output)
     export_to_excel(cbo_hierarquia, correspondencia, excel_output)
     print("Sucesso! Arquivos salvos em 'data/processed/'.")
