@@ -11,6 +11,7 @@ def export_to_csv(cbo_df: pd.DataFrame, filepath: str | Path) -> None:
     
     depara.columns = ['CBO_2002_6dig', 'TITULO_CBO', 'COD_PNAD_4dig',
                       'GG_COD', 'GG_NOME', 'SUBGRUPO_PRINCIPAL', 'SUBGRUPO']
+    
     depara.to_csv(filepath, index=False, encoding='utf-8-sig', sep=';')
 
 def _write_sheet(ws, title_text, note_text, headers, rows, col_widths):
@@ -63,17 +64,17 @@ def export_to_excel(cbo_df: pd.DataFrame, correspondencia_df: pd.DataFrame, file
 
     ws1 = wb.active
     ws1.title = 'COD-PNAD x CBO'
+    
+    headers_ws1 = correspondencia_df.columns.tolist()
+    widths_ws1 = [20] * len(headers_ws1)
+
     _write_sheet(
         ws1,
         'Correspondência COD-PNAD (4 dígitos) ↔ CBO-2002 (6 dígitos)',
         'Regra: COD-PNAD = 4 primeiros dígitos do CBO-2002.',
-        ['COD-PNAD (4 dig)', 'GG (1 dig)', 'Nome do Grande Grupo',
-         'Subg. Princ. (2 dig)', 'Subgrupo (3 dig)', 'Título de Referência',
-         'Qtd CBO', 'Títulos das Ocupações CBO-2002', 'Códigos CBO-2002'],
-        correspondencia_df[['COD_PNAD_4dig', 'GRANDE_GRUPO_COD', 'GRANDE_GRUPO_NOME',
-                            'SUBGRUPO_PRINCIPAL_COD', 'SUBGRUPO_COD', 'TITULO_REFERENCIA',
-                            'QTD_OCUPACOES_CBO', 'TITULOS_CBO', 'CODIGOS_CBO']].values.tolist(),
-        [18, 10, 44, 20, 16, 36, 9, 65, 42]
+        headers_ws1,
+        correspondencia_df.values.tolist(),
+        widths_ws1
     )
 
     ws2 = wb.create_sheet('CBO-2002 Completa')
@@ -88,4 +89,5 @@ def export_to_excel(cbo_df: pd.DataFrame, correspondencia_df: pd.DataFrame, file
                 'SUBGRUPO_PRINCIPAL_COD', 'SUBGRUPO_COD']].values.tolist(),
         [22, 52, 16, 50, 10, 20, 16]
     )
+
     wb.save(filepath)

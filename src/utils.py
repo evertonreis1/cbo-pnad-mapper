@@ -4,7 +4,7 @@ class CBOHelper:
     def __init__(self, cbo_df: pd.DataFrame, correspondencia_df: pd.DataFrame):
         self.cbo = cbo_df
         self.cbo_para_cod = dict(zip(cbo_df['CODIGO'], cbo_df['COD_PNAD']))
-        self.cod_para_nome = dict(zip(correspondencia_df['COD_PNAD_4dig'], correspondencia_df['TITULO_REFERENCIA']))
+        self.cod_para_nome = dict(zip(correspondencia_df['COD_PNAD_4dig'], correspondencia_df['TITULO_REFERENCIA_CBO']))
 
     def cbo_to_cod(self, codigo_cbo: str) -> dict:
         codigo_cbo = str(codigo_cbo).strip().zfill(6)
