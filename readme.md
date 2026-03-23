@@ -1,4 +1,3 @@
-```markdown
 # 📊 Correspondência CBO-2002 × COD-PNAD (IBGE)
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white)
@@ -27,16 +26,12 @@ Antes de rodar o código, você precisa fornecer as bases brutas na pasta de dad
 ### 2. Instalação das Dependências
 Certifique-se de ter o Python instalado. No terminal, instale as dependências do projeto:
 
-```bash
-pip install -r requirements.txt
-```
+`pip install -r requirements.txt`
 
 ### 3. Execução
 Rode o script principal para iniciar o processamento (ETL):
 
-```bash
-python main.py
-```
+`python main.py`
 
 ---
 
@@ -56,4 +51,3 @@ Após a execução bem-sucedida, os relatórios finais serão salvos automaticam
 * **Python:** Linguagem principal para orquestração.
 * **Pandas:** Utilizado para extração, transformação de strings, agrupamento e cruzamento (merge) dos dados.
 * **Openpyxl:** Utilizado para a geração do relatório final em Excel, aplicando cores, larguras de colunas, congelamento de painéis e filtros automatizados.
-```
